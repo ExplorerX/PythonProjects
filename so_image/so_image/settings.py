@@ -13,7 +13,7 @@ BOT_NAME = 'so_image'
 
 SPIDER_MODULES = ['so_image.spiders']
 NEWSPIDER_MODULE = 'so_image.spiders'
-
+# 启用ImagePipeline,并指定文件下载目录
 ITEM_PIPELINES = {
     'scrapy.pipelines.images.ImagesPipeline': 1,
 }
