@@ -13,6 +13,7 @@ class ImagesSpider(scrapy.Spider):
     start_urls = [BASE_URL % 0]
 
     def parse(self, response):
+        # jquery请求请求加载更多的图片，请求的格式为一个Json文件，这个文件中存放了需要加载图片的地址
         infos = json.loads(response.body.decode('utf-8'))
         yield {'image_urls': [info['qhimg_url'] for info in infos['list']]}
 
