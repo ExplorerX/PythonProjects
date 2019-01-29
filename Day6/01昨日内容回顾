@@ -1,0 +1,27 @@
+字典 dict
+dic = {
+    'name': 'alex',
+}
+增：
+    dic['age'] = 21
+    存在就覆盖，不存在添加
+    dic.setdefault()
+    存在不覆盖，不存在添加
+删：
+    pop()有返回值，按照key删除
+    clear()清空字典
+    del dic内存中清空字典，删除字典
+    popitem()随机删除，也有返回值，直接返回，返回的是一个元组，包含键和值
+改：
+    dic['age'] = 21
+    update()把一个字典覆盖添加到另一个字典里面
+查：
+    dic.keys()
+    dic.values()
+    dic.items()
+分别赋值：
+for k, v in dic.item:
+    print(k, v)
+dic.get(key, none)
+
+字典的嵌套

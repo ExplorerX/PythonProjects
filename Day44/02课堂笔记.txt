@@ -1,0 +1,124 @@
+1. 什么时候用主键？主键的用处？
+	一张表只能有一个主键？√
+	一个主键只能是一列吗？×
+create table t1(
+	nid int not null auto_increment,
+	pid int not null,
+	num int not null,
+	primary key (pid, nid)
+)
+foreign key 的名字是不能重复的
+constraint 外键名 foreign key (列名) references 表名(列名)
+数据行：
+	insert into tb1(name,age) values("alex",18);
+	delete from tb1;
+	truncate table tb1;
+	update tb1 set name="name" where 条件;
+	select * from tb;  # 一般不要用，因为效率低
+	select id,name from tb;
+
+	desc 表名;  # 可以查看字段属性
+	show create table 表名;
+	alter table 表名 auto_increment=1;  # 修改自增的索引
+
+
+	MySQL:自增步长
+		基于会话级别：
+		show session varibles like "auto_inc%";  # 查看全局变量
+		set session auto_increment_increment=2  # 设置步长
+		set session auto_increment_offset=10  # 设置自增起始值
+		基于全局级别：
+		show global varibles like "auto_inc%";  # 查看全局变量
+		set global auto_increment_increment=2  # 设置步长
+		set global auto_increment_offset=10  # 设置自增起始值
+
+	SqlServer：自增步长
+		基于表级别
+
+今日内容：
+	0、唯一索引：索引的目标就是加速查找
+	   create table t1(
+	       id int;
+	       num int;
+	       unique uq1 (列名)
+	       unique 名字 (列名)  # 单列唯一
+	       unique uq1 (列名1,列名2)  # 列名1和列名2联合唯一，就是这两个列不能完全一样
+	       unique 名字 (列名1,列名2)
+	   )
+	PS:
+		约束不能重复（可以为空）
+		加速查找
+		主键不能重复，不能为空
+
+	1、外键的变种
+		一对一：外键+唯一约束
+		一对多：外键
+		多对多：双向的一对多
+
+	2、SQL语句的补充：数据行的操作补充
+		增：
+			insert into 表名() value();
+			insert into 表名() values(),();
+			insert into 表1() select 列名 from 表2;
+		删:
+			delete from 表名();
+			delete from 表名() where 条件;
+			delete from 表名() where 条件 and|or 条件;
+		改:
+			undate 表名 set 列名=值 where 条件;
+		查:
+			select * from 表名;
+			select 列名 from 表名;
+			select 列名 from 表名 where 条件;
+			select 列名 from 表名 order by 列名;
+			select 列名 from 表名 order by 列名 desc|asc;  # desc是从大到小 asc是从小到大
+			select 列名 from 表名 order by 列名1 desc,列名2 asc;  # 先按照列名1进行倒序排列，当列名1相等的时候，按照列名2进行正序排列
+			select 列名 as 命名 from 表名;  # 将表中的一列数据查询出来之后显示的表头内容
+			select 列名 from 表名 where id in (1,3,5);
+			select 列名 from 表名 where id not in (1,3,5);
+			select 列名 from 表名 where id in select查询语句;
+			select 列名 from 表名 where id between 3 and 5;  # 查询ID在3到5之间的数据，左右都包括
+
+			select col_name from table_name where col_name like "a%";  # %表示任意字符
+			select col_name from table_name where col_name like "a_";  # _表示一个字符
+
+
+			select * from table_name limit 10;  # 显示前十条记录
+			select * from table_name limit 0,10;  # 从索引是0的数据开始向后取出10条数据
+			select * from table_name order by id desc limit 10;  # 取后十条数据
+
+
+			select 聚合函数 from table_name group by col_name;
+			聚合函数：max min count sum avg
+			对聚合函数结果进行二次筛选的时候必须使用having
+			select 聚合函数或列名 from 表名 group by 列名 having 含有聚合函数的条件;
+
+			连表查询：
+			select * from class,student where class.cid=student.cid;
+
+			左连接:
+			select * from student left join class on class.cid=student.cid;
+			#  显示student中的全部行
+
+			右连接：
+			select * from student right join class on class.cid=sutdent.cid;
+			#  显示class中的全部行
+
+			Inner join:
+			select * from student inner join class on class.cid=student.cid;
+			#  连接两个表，使得出现null的一行隐藏
+			#  经过测试暂定为连接方式使用的是左连接，然后将左连接中的存在null的行隐藏
+
+			select score.sid,sname,gender,caption,cname,tname,number from score 
+			left join student on score.student_id = student.sid 
+			left join course on score.corse_i d = course.cid 
+			left join teacher on teacher.tid = course.teacher_id 
+			left join class on class.cid = student.class_id;
+			+-----+-------+--------+----------+-------+-------+--------+
+			| sid | sname | gender | caption  | cname | tname | number |
+			+-----+-------+--------+----------+-------+-------+--------+
+			|   1 | 钢蛋  | 女     | 三年二班 | 生物  | 波多  |     60 |
+			|   2 | 钢蛋  | 女     | 三年二班 | 体育  | 波多  |     59 |
+			|   3 | 铁锤  | 女     | 三年二班 | 体育  | 波多  |    100 |
+			+-----+-------+--------+----------+-------+-------+--------+
+

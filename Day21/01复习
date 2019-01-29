@@ -1,0 +1,24 @@
+序列化模块
+    数据类型转换成字符串的过程就是序列化
+    为了方便存储和网络传输
+    json
+        dumps
+        loads
+        dump
+        load
+    pickle
+        方法和json一样
+        dump和load的时候文件是以字节的形式打开的
+        支持python所有的数据类型
+        序列化和反序列化需要相同的环境
+    shelve
+        只提供一个open方法
+        open方法获取了一个文件句柄，操作和文件类似
+        操作和文件操作差不多
+模块的导入：
+    import
+    from import
+    as重命名
+    都支持多名字导入
+    sys.moudles记录了所有被导入的模块
+    sys.path记录了导入模块的时候寻找的所有路径

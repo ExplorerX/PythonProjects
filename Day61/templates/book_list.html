@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book_List</title>
+</head>
+<body>
+    <h1>所有的书都在这里！</h1>
+    <a href="/add_book/">点击这里添加书籍信息</a>
+    <table border="1">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Title</td>
+                <td>Publisher</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in all_book %}
+                <tr>
+                    <td>{{ i.id }}</td>
+                    <td>{{ i.title }}</td>
+                    <td>{{ i.publisher.name }}</td>
+                    <td><a href="/del_book?id={{ i.id }}">删除</a><a href="/edit_book?id={{ i.id }}">修改</a></td>
+                </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+</body>
+</html>

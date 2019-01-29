@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>author_list</title>
+</head>
+<body>
+    <h1>作者列表</h1>
+    <table border="1">
+        <thead align="center">
+            <tr>
+                <td>编号</td>
+                <td>作者</td>
+                <td>作品</td>
+            </tr>
+        </thead>
+        <tbody align="center">
+            {% for author in author_list %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ author.name }}</td>
+                    <td>
+                        {% for book in author.book.all %}
+                            {% if forloop.last %}
+                                《{{ book.title }}》
+                                {% else %}
+                                《{{ book.title }}》,
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                </tr>
+            {% endfor %}            
+        </tbody>
+    </table>
+</body>
+</html>

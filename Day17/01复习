@@ -1,0 +1,10 @@
+迭代器
+
+生成器进阶
+
+内置函数
+    55个
+    带key的：max min filter map sorted
+匿名函数
+    lambda 参数: 返回值表达式
+    和5个特殊的内置函数可以互动

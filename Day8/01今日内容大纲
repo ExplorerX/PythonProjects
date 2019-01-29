@@ -1,0 +1,24 @@
+1、文件操作
+    模特主妇护士老师.txt
+    1、文件路径：d:\模特主妇护士老师.txt
+    2、编码方式：utf-8,gbk,……
+    3、操作方式：只读，只写，最佳，读写，写读
+    以什么编码方式储存的文件，就以什么格式的编码打开，否则会乱码
+
+    只读：r rb
+        # 相对路径
+        f = open('模特主妇护士班主任.txt', mode='r', encoding='utf-8')
+        content = f.read()
+        print(content, type(content))  # bytes ---> str python中str用的是unicode编码，read方法隐藏的的实现了一步编码方式的转换
+        f.close()
+        # f = open('模特主妇护士班主任.txt', mode='rb')
+        # content = f.read()
+        # print(content)
+        # f.close()
+        # 上面的代码有什么用？
+        # 非文字类的文件；上传下载
+
+
+2、编码
+
+3、试卷讲解

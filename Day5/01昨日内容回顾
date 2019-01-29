@@ -1,0 +1,20 @@
+1、昨日内容回顾
+列表：增删改查
+    增：append() insert() extend()
+    删: remove() pop() clear() del
+    改：li[index] = 内容 li[切片] = 内容
+    查：for循环遍历 通过切片查 通过索引查
+    range()有序列表 一般用于for循环
+    元祖：只读列表 儿子不可以改，孙子可能能改
+    sort() 正向排序 参数：reverse=True则为倒序排序
+    反转：reverse()将可迭代对象的顺序反转
+    ps：如果列表里面的元素都是字符串也可以进行排序，排序方法是依靠每个字符串的首字母的ascii码的位置进行排序
+    join：str.join(可迭代对象) list -> str
+    split:str -> list
+    count:计数
+    len()：确定长度
+    li.index():通过元素找索引
+
+2、字典
+3、字典的增删改查
+4、字典的嵌套
