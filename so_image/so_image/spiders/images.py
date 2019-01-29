@@ -13,9 +13,10 @@ class ImagesSpider(scrapy.Spider):
     start_urls = [BASE_URL % 0]
 
     def parse(self, response):
-        infos = json.load(response.body.decode('utf-8'))
+        infos = json.loads(response.body.decode('utf-8'))
         yield {'image_urls': [info['qhimg_url'] for info in infos['list']]}
 
         self.start_index += infos['count']
+        print(self.start_index)
         if infos['count'] > 0 and self.start_index < self.MAX_DOWNLOAD_NUM:
             yield Request(self.BASE_URL % self.start_index)
