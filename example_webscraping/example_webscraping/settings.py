@@ -19,7 +19,7 @@ NEWSPIDER_MODULE = 'example_webscraping.spiders'
 #USER_AGENT = 'example_webscraping (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -88,3 +88,18 @@ ROBOTSTXT_OBEY = True
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+FEED_EXPORT_FIELDS = [
+    'area',
+    'population',
+    'iso',
+    'country',
+    'capital',
+    'continent',
+    'tld',
+    'currency_code',
+    'currency_name',
+    'phone',
+    'languages',
+    'neighbours'
+]
+DOWNLOAD_DELAY = 5
